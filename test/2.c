@@ -147,5 +147,20 @@ int		main(void)
 	r_len = printf("%u\n", NULL);
 	printf("Same ret: %d\n\n", f_len == r_len);
 	usleep(100000);
+
+	f_len = ft_printf("%rxxxxx%k%%%c\n", 65);
+	r_len = printf("%rxxxxx%k%%%c\n", 65);
+	printf("Same ret: %d\n\n", f_len == r_len);
+	usleep(100000);
+
+	f_len = ft_printf("%rxxx%m%%%%%cxx%k%%%c\n", 65, 66);
+	r_len = printf("%rxxx%m%%%%%cxx%k%%%c\n", 65, 66);
+	printf("Same ret: %d\n\n", f_len == r_len);
+	usleep(100000);
+
+	f_len = ft_printf("_____ %c %% %%%X %p%% ddeded^^dd\t\n", 65, NULL);
+	r_len = printf("_____ %c %% %%%X %p%% ddeded^^dd\t\n", 65, NULL);
+	printf("Same ret: %d\n\n", f_len == r_len);
+	usleep(100000);
 	return (0);
 }

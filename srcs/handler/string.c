@@ -1,22 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_unsigned.c                                   :+:      :+:    :+:   */
+/*   string.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgeoffro <lgeoffro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/31 11:51:48 by lgeoffro          #+#    #+#             */
-/*   Updated: 2021/07/31 11:51:59 by lgeoffro         ###   ########.fr       */
+/*   Created: 2021/08/04 12:39:52 by lgeoffro          #+#    #+#             */
+/*   Updated: 2021/08/04 21:47:59 by lgeoffro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
-void	parse_unsigned(t_specifier *specifier)
+int	handle_str(char *s, t_props *props)
 {
-	unsigned long long	input;
+	int	len;
 
-	input = va_arg(specifier->args, unsigned int);
-	specifier->fmt_str = int_handler(input, specifier, "0123456789");
-	width_handler(specifier);
+	len = 0;
+	if (!s)
+	{
+		ft_putstr("(null)");
+		len = len + 6;
+	}
+	else
+	{
+		ft_putstr(s);
+		len = len + ft_strlen(s);
+	}
+	props->len_print = props->len_print + len;
+	return (0);
 }

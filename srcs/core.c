@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   conversion_dispatcher.c                            :+:      :+:    :+:   */
+/*   core.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgeoffro <lgeoffro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/31 11:50:32 by lgeoffro          #+#    #+#             */
-/*   Updated: 2021/07/31 11:52:31 by lgeoffro         ###   ########.fr       */
+/*   Created: 2021/08/04 12:40:15 by lgeoffro          #+#    #+#             */
+/*   Updated: 2021/08/04 21:22:57 by lgeoffro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	conversion_dispatcher(char c, t_specifier *specifier)
+void	dispatch_specifier(char c, t_props *props)
 {
 	if (c == 'c')
-		parse_char(specifier);
+		handle_char(va_arg(props->args, int), props);
 	else if (c == 's')
-		parse_str(specifier);
+		handle_str(va_arg(props->args, char *), props);
 	else if (c == 'p')
-		parse_hex(specifier, c);
+		handle_ptr(va_arg(props->args, void *), props);
 	else if (c == 'd' || c == 'i')
-		parse_int(specifier);
+		handle_int(va_arg(props->args, int), props);
 	else if (c == 'u')
-		parse_unsigned(specifier);
-	else if (c == 'x' || c == 'X')
-		parse_hex(specifier, c);
+		handle_uint((unsigned int)va_arg(props->args, unsigned int), props);
+	else if (c == 'x')
+		handle_hex((unsigned int)va_arg(props->args, unsigned int), props, 0);
+	else if (c == 'X')
+		handle_hex((unsigned int)va_arg(props->args, unsigned int), props, 1);
 	else if (c == '%')
-		parse_percent(specifier);
-	else if (c == 'n')
-		parse_nprint(specifier);
+		handle_per(props);
+	(void)props;
 }

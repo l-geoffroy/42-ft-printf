@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   format.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgeoffro <lgeoffro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/29 10:12:17 by lgeoffro          #+#    #+#             */
-/*   Updated: 2021/07/09 13:56:09 by lgeoffro         ###   ########.fr       */
+/*   Created: 2021/08/04 12:39:58 by lgeoffro          #+#    #+#             */
+/*   Updated: 2021/08/04 21:28:26 by lgeoffro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-void	ft_putnbr(int n)
+int	parse_specifier(t_props *props)
 {
-	long long int	nb;
-
-	if (n == -2147483648)
-		ft_putstr("-2147483648");
-	nb = n;
-	if (nb < 0)
+	if (!ft_strchr("cspiudxX%", props->format[props->index + 1]))
 	{
-		nb = nb * -1;
-		ft_putchar('-');
+		props->index++;
+		return (0);
 	}
-	if (nb >= 10)
-		ft_putnbr(nb / 10);
-	ft_putchar((nb % 10) + 48);
+	dispatch_specifier(props->format[props->index + 1], props);
+	return (1);
 }

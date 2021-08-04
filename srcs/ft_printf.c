@@ -5,35 +5,35 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgeoffro <lgeoffro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/31 11:50:38 by lgeoffro          #+#    #+#             */
-/*   Updated: 2021/07/31 11:50:38 by lgeoffro         ###   ########.fr       */
+/*   Created: 2021/08/04 12:40:16 by lgeoffro          #+#    #+#             */
+/*   Updated: 2021/08/04 21:25:14 by lgeoffro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	init_specifier(t_specifier *specifier, const char *format_str)
-{
-	specifier->format = format_str;
-	specifier->is_valid = 0;
-	specifier->flags = reset_flags();
-	specifier->nprint = 0;
-	specifier->fmt_str = NULL;
-}
-
 int	ft_printf(const char *format, ...)
 {
-	t_specifier	specifier;
+	t_props	props;
 
-	va_start(specifier.args, format);
-	init_specifier(&specifier, format);
-	while (*specifier.format)
+	va_start(props.args, format);
+	props.format = (char *)format;
+	props.index = 0;
+	props.len_print = 0;
+	while (props.format[props.index])
 	{
-		if (*specifier.format == '%')
-			parse_format(&specifier);
+		if (props.format[props.index] == '%')
+		{
+			parse_specifier(&props);
+			props.index++;
+		}
 		else
-			specifier.nprint += write(1, specifier.format++, 1);
+		{
+			ft_putchar(props.format[props.index]);
+			props.len_print++;
+		}
+		props.index++;
 	}
-	va_end(specifier.args);
-	return (specifier.nprint);
+	va_end(props.args);
+	return (props.len_print);
 }

@@ -5,28 +5,26 @@
 #                                                     +:+ +:+         +:+      #
 #    By: lgeoffro <lgeoffro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/07/31 11:50:53 by lgeoffro          #+#    #+#              #
-#    Updated: 2021/07/31 11:50:53 by lgeoffro         ###   ########.fr        #
+#    Created: 2021/08/04 12:40:20 by lgeoffro          #+#    #+#              #
+#    Updated: 2021/08/04 12:40:20 by lgeoffro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS 	=	conversion_dispatcher.c \
-			width_handler.c \
-			parse_format.c \
-			ft_llutoa_base.c \
-			ft_printf.c \
-			parse_char.c \
-			parse_flags.c \
-			parse_hex.c \
-			parse_int.c \
-			parse_nprint.c \
-			parse_percent.c \
-			parse_str.c \
-			parse_unsigned.c \
-			parse_width_precision.c \
-			int_handler.c \
-			hex_handler.c \
-			ft_printf_utils.c
+SRCS 	=	srcs/ft_printf.c \
+			srcs/core.c \
+			srcs/parse/format.c \
+			srcs/handler/char.c \
+			srcs/handler/string.c \
+			srcs/handler/ptr.c \
+			srcs/handler/int.c \
+			srcs/handler/uint.c \
+			srcs/handler/hex.c \
+			srcs/handler/per.c \
+			srcs/utils/base_conv.c \
+			srcs/utils/str_lower.c \
+			srcs/utils/len_nbr.c \
+			srcs/utils/u_putnbr.c \
+			srcs/utils/len_u_nbr.c \
 
 OBJS = $(SRCS:.c=.o)
 
@@ -34,13 +32,13 @@ NAME = libftprintf.a
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror -I.
+CFLAGS = -Wall -Wextra -Werror -I includes
 
 RM = rm -f
 
 AR = ar rcs
 
-LIBFTDIR = ./libft
+LIBFTDIR = ./srcs/libft
 
 LIBFT = $(LIBFTDIR)/libft.a
 

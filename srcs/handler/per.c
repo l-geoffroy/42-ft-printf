@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_width_precision.c                            :+:      :+:    :+:   */
+/*   per.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgeoffro <lgeoffro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/31 11:51:51 by lgeoffro          #+#    #+#             */
-/*   Updated: 2021/07/31 11:51:57 by lgeoffro         ###   ########.fr       */
+/*   Created: 2021/08/04 12:39:48 by lgeoffro          #+#    #+#             */
+/*   Updated: 2021/08/04 12:39:48 by lgeoffro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	parse_width_precision(char d, t_specifier *specifier, char mode)
+int	handle_per(t_props *props)
 {
-	if (mode == 'w')
-		specifier->flags.width = specifier->flags.width * 10 + (d - '0');
-	else if (mode == 'p')
-		specifier->flags.prec = specifier->flags.prec * 10 + (d - '0');
+	ft_putchar('%');
+	props->len_print++;
+	return (0);
 }

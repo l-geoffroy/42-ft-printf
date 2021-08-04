@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_nprint.c                                     :+:      :+:    :+:   */
+/*   str_lower.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgeoffro <lgeoffro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/31 11:51:26 by lgeoffro          #+#    #+#             */
-/*   Updated: 2021/07/31 11:51:27 by lgeoffro         ###   ########.fr       */
+/*   Created: 2021/08/04 12:40:09 by lgeoffro          #+#    #+#             */
+/*   Updated: 2021/08/04 12:40:10 by lgeoffro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	parse_nprint(t_specifier *specifier)
+char	*ft_strlower(char *s)
 {
-	unsigned long	*container;
+	int		i;
 
-	container = va_arg(specifier->args, void *);
-	*container = specifier->nprint;
+	i = 0;
+	while (s[i])
+	{
+		if (ft_isupper(s[i]) == 1)
+			s[i] += 32;
+		i++;
+	}
+	return (s);
 }

@@ -162,5 +162,25 @@ int		main(void)
 	r_len = printf("_____ %c %% %%%X %p%% ddeded^^dd\t\n", 65, NULL);
 	printf("Same ret: %d\n\n", f_len == r_len);
 	usleep(100000);
+
+	f_len = ft_printf("AbCdekoqoskDAKOdeiADIsdkkkKQD\tDOAkddd\n", 65, NULL);
+	r_len = printf("AbCdekoqoskDAKOdeiADIsdkkkKQD\tDOAkddd\n", 65, NULL);
+	printf("Same ret: %d\n\n", f_len == r_len);
+	usleep(100000);
+
+	f_len = ft_printf("%s // %s // %s // %% // %c\n", "test1", "test2", "test3", 65);
+	r_len = printf("%s // %s // %s // %% // %c\n", "test1", "test2", "test3", 65);
+	printf("Same ret: %d\n\n", f_len == r_len);
+	usleep(100000);
+
+	f_len = ft_printf("%s // %s // %s // %% // %c // %u\n", "test1", "test2", "test3", 65, UINT_MAX);
+	r_len = printf("%s // %s // %s // %% // %c // %u\n", "test1", "test2", "test3", 65, UINT_MAX);
+	printf("Same ret: %d\n\n", f_len == r_len);
+	usleep(100000);
+
+	f_len = ft_printf("%s // %s // %s // %% // %c // %u\n", "test1", "test2", "test3", 65, INT_MIN, 9090);
+	r_len = printf("%s // %s // %s // %% // %c // %u\n", "test1", "test2", "test3", 65, INT_MIN, 9090);
+	printf("Same ret: %d\n\n", f_len == r_len);
+	usleep(100000);
 	return (0);
 }
